@@ -1,0 +1,33 @@
+#setting up my turtle
+
+import turtle
+window = turtle.Screen()
+square = turtle.Pen()
+square.speed(0)
+square.penup()
+square.goto(0,0)
+square.pendown()
+square.color("black", "red")
+
+#defining my function to make what i wantit prints square filled red and black outline
+
+def pattern(length, depth):
+    square.begin_fill()
+    square.forward(0)
+    if depth > 1:
+        square.left(90)
+        square.forward(90)
+        square.left(90)
+        square.forward(90)
+        square.left(90)
+        square.forward(90)
+        square.left(90)
+        square.forward(90)
+        square.end_fill()
+
+#run my function these are just there change later to tweak
+pattern(300,3)
+
+
+#exit here so window doesnt automatically close
+turtle.exitonclick()
