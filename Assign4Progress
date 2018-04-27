@@ -1,19 +1,24 @@
-#setting up stuff
+#setting up turtle code by Angel M. Gonzalez
 
 import turtle
 window = turtle.Screen()
 square = turtle.Pen()
-square.speed(0)
+square.speed(300)
 square.penup()
 square.pendown()
 square.color("black", "red")
 
 #defining my function to make what i want
 
-def pattern(length, depth, x, y):
+def pattern(length, depth,x,y):
+    square.up()
+    square.ht()
+    square.goto(x, y)
+    square.st()
+    square.down()
     if depth > 1:
-        square.goto(0,0)
         square.begin_fill()
+        square.goto(0,0)
         square.forward(length)
         square.left(90)
         square.forward(length)
@@ -23,13 +28,24 @@ def pattern(length, depth, x, y):
         square.forward(length)
         square.end_fill()
 
-        pattern(length/2.2, depth -1, 1.5,1.5)
-        pattern(length/4.4, depth -1, 1.5,1.5)
+        pattern(depth-1, x - length/2, y - length/2, length/2.2)    # lower left
+        pattern(depth-1, x - length/2, y + length/2, length/2.2)    # upper left
+        pattern(depth-1, x + length/2, y - length/2, length/2.2)    # lower right
+        pattern(depth-1, x + length/2, y + length/2, length/2.2)    # upper right
 
-pattern(300, 4, 0,0)
+
+
+
+
+
+pattern(300, 4, 0, 0)
+
+
+
 #run my function
 
 
 
 #exit
 turtle.exitonclick()
+
