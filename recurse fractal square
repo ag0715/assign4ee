@@ -25,28 +25,16 @@ def pattern(t,x,y,length,depth): #fuunction that will create the fractal
     t.sety(y - length/2)
     shape(t,x,y,length, depth)
 
-    pattern(t, 150 - length / 2, 150 - length / 2, length / 2.2, depth -1)
+    pattern(t, 22 - length / 2, 20 - length / 2, length / 2.2, depth -1)
+
+    pattern(t, 20 - length / 2, -100 + length / 2, length / 2.2, depth -1)
+
+    pattern(t, -100 + length / 2, 20 - length / 2, length / 2.2, depth -1)
+
+    pattern(t, -100 + length / 2,-100 + length / 2, length / 2.2, depth -1)
 
 
-    pattern(t, 150 - length / 2, 150 + length / 2, length / 2.2, depth -1)
 
-
-    pattern(t, 150 + length / 2, 150 - length / 2, length / 2.2, depth -1)
-
-
-    pattern(t, 150 + length / 2, 150 + length / 2, length / 2.2, depth -1)
-
-
-    t.penup() #returns back to the center
-    t.backward(length/2)
-    t.left(90)
-    t.backward(length/2)
-    t.left(90)
-    t.backward(length/2)
-    t.left(90)
-    t.backward(length/2)
-    t.left(90)
-    t.pendown()
 
 pattern(t, 0, 0, 300 , 4 )
 
