@@ -4,6 +4,7 @@ t = Turtle()
 t.color('black', 'red')
 t.speed(700)
 def shape(t,x,y,length, depth): #builds the square
+    t.begin_fill()
     t.penup()
     t.forward(length/2)
     t.left(90)
@@ -14,6 +15,7 @@ def shape(t,x,y,length, depth): #builds the square
     t.forward(length/2)
     t.left(90)
     t.pendown()
+    t.end_fill()
 
 def pattern(t,x,y,length,depth): #fuunction that will create the fractal
     if depth == 0:
@@ -24,20 +26,16 @@ def pattern(t,x,y,length,depth): #fuunction that will create the fractal
     shape(t,x,y,length, depth)
 
     pattern(t, 150 - length / 2, 150 - length / 2, length / 2.2, depth -1)
-    t.backward(length)
-    t.left(90)
+
 
     pattern(t, 150 - length / 2, 150 + length / 2, length / 2.2, depth -1)
-    t.backward(length)
-    t.left(90)
+
 
     pattern(t, 150 + length / 2, 150 - length / 2, length / 2.2, depth -1)
-    t.backward(length)
-    t.left(90)
+
 
     pattern(t, 150 + length / 2, 150 + length / 2, length / 2.2, depth -1)
-    t.backward(length)
-    t.left(90)
+
 
     t.penup() #returns back to the center
     t.backward(length/2)
@@ -50,8 +48,10 @@ def pattern(t,x,y,length,depth): #fuunction that will create the fractal
     t.left(90)
     t.pendown()
 
-t.begin_fill()
 pattern(t, 0, 0, 300 , 4 )
-t.end_fill()
+
+
 
 s.exitonclick()
+
+
