@@ -5,13 +5,13 @@ t.color('black', 'red')
 t.speed(700)
 def shape(t,x,y,length, depth): #builds the square
     t.penup()
-    t.forward(length)
+    t.forward(length/2)
     t.left(90)
-    t.forward(length)
+    t.forward(length/2)
     t.left(90)
-    t.forward(length)
+    t.forward(length/2)
     t.left(90)
-    t.forward(length)
+    t.forward(length/2)
     t.left(90)
     t.pendown()
 
@@ -40,19 +40,18 @@ def pattern(t,x,y,length,depth): #fuunction that will create the fractal
     t.left(90)
 
     t.penup() #returns back to the center
-    t.backward(length)
+    t.backward(length/2)
     t.left(90)
-    t.backward(length)
+    t.backward(length/2)
     t.left(90)
-    t.backward(length)
+    t.backward(length/2)
     t.left(90)
-    t.backward(length)
+    t.backward(length/2)
+    t.left(90)
     t.pendown()
 
 t.begin_fill()
 pattern(t, 0, 0, 300 , 4 )
 t.end_fill()
-
-
 
 s.exitonclick()
