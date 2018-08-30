@@ -1,0 +1,98 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+    double price; 
+    cin >> price;
+    int age;
+    cin >> age;
+    char category;
+    cin >> category; 
+    
+   if (price <= 0 ){
+      cout << "Wrong input";
+   }
+   
+   else if (age <= 0){
+      cout << "Wrong input";
+   }
+   
+   else if (category == 'a' ){
+         cout << price;
+      }  
+      
+   else if (category =='A'){
+         cout << price;
+      } 
+      
+   else if ((age > 0) & (age <= 5)){
+   double final_price;
+   final_price  =  price - (( price * 90)/100);
+   cout << fixed;
+   cout << setprecision(2) << final_price;
+      }
+      
+      else if (category == 'b' ){
+         cout << price;
+      }  
+      
+      else if (category =='B'){
+         cout << price;
+      } 
+      
+      else if ((age > 5) & (age <= 18)){
+      double final_price;
+      final_price  =  price - (( price * 45)/100);
+      cout << fixed;
+      cout << setprecision(2) << final_price;
+      }
+      
+         else if (category == 'c' ){
+         cout << price;
+         }  
+      
+         else if (category =='C'){
+         cout << price;
+         } 
+      
+         else if ((age > 18) & (age <= 25)){
+         double final_price;
+         final_price  =  price - (( price * 55)/100);
+         cout << fixed;
+         cout << setprecision(2) << final_price;
+         }
+         
+            else if (category == 'd' ){
+            cout << price;
+            }  
+      
+            else if (category =='D'){
+            cout << price;
+            } 
+      
+            else if ((age > 25) & (age <= 65)){
+            double final_price;
+            final_price  =  price - (( price * 65)/100);
+            cout << fixed;
+            cout << setprecision(2) << final_price;
+            }
+         
+               else if (category == 'e' ){
+               cout << price;
+               }  
+      
+               else if (category =='E'){
+               cout << price;
+               } 
+      
+               else if (age >= 75){
+               double final_price;
+               final_price  =  price - (( price * 75)/100);
+               cout << fixed;
+               cout << setprecision(2) << final_price;
+               }
+         
+   return 0;
+}
