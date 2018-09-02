@@ -20,7 +20,7 @@ int main ()
     double avg1 = 0.0;
     double avg2 = 0.0;
     int min = 0;
-    int max = 101;
+    int max = 100;
     int seed_value;
     cin>>seed_value;
     srand(seed_value); //where seed_value is a integer.
@@ -28,8 +28,8 @@ int main ()
     
     
     for (i = 0; i < classes; i++) {
-        NumberA[i] = (rand() % (max - min ));
-        NumberB[i]= (rand() % (max - min ));
+        NumberA[i] = (rand() % (max - min + 1) + min);
+        NumberB[i]= (rand() % (max - min + 1) + min);
     }
     
     for (i = 0; i < 10; ++i){
