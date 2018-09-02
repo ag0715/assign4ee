@@ -18,22 +18,35 @@ int main ()
     int NumberB [classB];
     int i;
     double sum = 0;
-
-  
+    double avg1 = 0.00;
+    double avg2 = 0.00;
+    int seed_value;
+    cin>> seed_value;
+    srand(seed_value); //where seed_value is a integer.
     
     
-    for (i = 0; i < classA; i++) {
+    
+    for (i = 0; i < 10; i++) {
+        NumberA[i] = (rand() % seed_value);
+        NumberB[i]= (rand() % seed_value);
         sum += NumberA[i];
-        NumberA[i] = rand() % 101;
-        cout << sum/10<< " ";
-        cout<< NumberA[i] << " ";
-    }
-    for (i = 0; i <classB; ++i){
+        avg1 = sum / 10;
         sum += NumberB[i];
-        NumberB[i]= rand() % 101;
-        cout <<sum/10<< " ";
-        cout <<NumberB[i]<< " ";
+        avg2 = sum/10;
     }
+    cout << NumberA<< " ";
+    
+    cout << "Class A average is: "<<avg1 << endl;
+
+    cout << "Class B average is: "<< avg2 << endl;
+
+    if (avg1 > avg2){
+        cout <<"Class A wins!";
+    }
+        
+    if (avg2 > avg1){
+        cout << "Class B wins!";
+        }
     
     return 0;
 }
