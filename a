@@ -1,31 +1,25 @@
 #include <iostream>
 using namespace std;
 
-int main() {
-    int startingVal = 2;
-    int *array = new int [startingVal];
-    for (int i = 0; i < startingVal;i++)
-        cout << array << " " << endl;
-    char option;
-    cout << "(p): Print elements" << endl;
-    cout << "(a): Add element" << endl;
-    cout << "(d): Delete element" << endl;
-    cout << "(r): Return size" << endl;
-    cout << "(e): Exit" << endl;
-    cin >> option;
+int main(){
+    int n = 2;
+    int *myptr;
     
-    switch (option)
-case 'a':
-    {
-        int n;
-        cin >> n;
-        int* tempArr = new int[n];
-        copy (array, array + 2, tempArr);
-        delete [ ] array;
-        array = tempArr;
-        cout << array << " ";
+    myptr = new int [n];
+    
+    for (int i = 0; i < n; ++i){
+        cin >> myptr[i];
+    }
+    
+    for (int i=0; i<n; i++){
+        cout << myptr[i]<< " ";
     }
     
     
+    cout << endl;
+    
+    delete [ ] myptr;
+    
     return 0;
+    
 }
