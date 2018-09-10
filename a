@@ -1,25 +1,70 @@
+//
+//  main.cpp
+//  Project1
+//
+//  Created by Angel Gonzalez on 9/5/18.
+//  Copyright © 2018 Angel Gonzalez. All rights reserved.
+//
+
 #include <iostream>
 using namespace std;
-
 int main(){
-    int n = 2;
-    int *myptr;
+int* ExpArr (int* Vals, int* size);
+void printArr(int* Vals, int size, int elem);
     
-    myptr = new int [n];
+    int CurrElem = 0;
+    int size = 2;
+    int *Vals = new int [size];
     
-    for (int i = 0; i < n; ++i){
-        cin >> myptr[i];
+    bool repeat = true;
+        while (repeat == true){
+            char option;
+            cout << "(p): Print elements" << endl;
+            cout << "(a): Add element" << endl;
+            cout << "(d): Delete element" << endl;
+            cout << "(r): Return size" << endl;
+            cout << "(e): Exit" << endl;
+            cin >> option;
+            switch (option){
+                case 'p':{
+                    for (int i =0; i < CurrElem; i++)
+                    cout <<"Vals";
+                    break;
+                }
+                case 'a':{
+                    int UserPut;
+                    cin >> UserPut;
+                    while (UserPut > 0){
+                    
+                    if (size == CurrElem + 1){
+                    Vals = ExpArr(Vals, & size);
+                }
+                    Vals [CurrElem] = UserPut;
+                    CurrElem++;
+                    cin >> UserPut;
+                }
+                    delete [] Vals;
+                    break;        
+                }
+                case 'e':
+                {
+                    repeat = false;
+                }
+        }
     }
-    
-    for (int i=0; i<n; i++){
-        cout << myptr[i]<< " ";
-    }
-    
-    
-    cout << endl;
-    
-    delete [ ] myptr;
-    
     return 0;
-    
 }
+
+
+int *ExpArr (int* Vals, int *size){
+    *size *= 2;
+    int *tempVals = new int[ *size ];
+    for ( int i = 0; i < *size; ++i )
+    {
+        tempVals[ i ] = Vals[ i ];
+    }
+    delete [] Vals;
+    return tempVals;
+}
+
+
