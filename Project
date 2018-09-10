@@ -21,15 +21,15 @@ void printArr(int* Vals, int size, int elem);
             char option;
             cout << "(p): Print elements" << endl;
             cout << "(a): Add element" << endl;
-            cout << "(d): Delete element" << endl;
-            cout << "(r): Return size" << endl;
             cout << "(e): Exit" << endl;
             cin >> option;
             switch (option){
+            
                 case 'p':{
                     cout << size<< endl;
                     break;
                 }
+                
                 case 'a':{
                     int UserPut;
                     cin >> UserPut;
@@ -43,8 +43,7 @@ void printArr(int* Vals, int size, int elem);
                     cin >> UserPut;
                         if (size > CurrElem ){
                     cout << "Array Exapnded";
-                        }
-                        
+                    }  
                 }
                     delete [] Vals;
                     Vals = new int[size];
@@ -71,5 +70,3 @@ int *ExpArr (int* Vals, int *size){
     delete [] Vals;
     return tempVals;
 }
-
-
