@@ -1,72 +1,36 @@
-//
-//  main.cpp
-//  Project1
-//
-//  Created by Angel Gonzalez on 9/5/18.
-//  Copyright © 2018 Angel Gonzalez. All rights reserved.
-//
-
 #include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <string>
 using namespace std;
-int main(){
-int* ExpArr (int* Vals, int* size);
-void printArr(int* Vals, int size, int elem);
+
+int main() {
     
-    int CurrElem = 0;
-    int size = 2;
-    int *Vals = new int [size];
+    string filename;
+    string getcontent;
+    ifstream name;
+    cin >> filename;
+    filename.append(".txt"); // adds the .txt extension to the file name
+    name.open(filename);
     
-    bool repeat = true;
-        while (repeat == true){
-            char option;
-            cout << "(p): Print elements" << endl;
-            cout << "(a): Add element" << endl;
-            cout << "(e): Exit" << endl;
-            cin >> option;
-            switch (option){
-            
-                case 'p':{
-                    cout << size<< endl;
-                    break;
-                }
-                
-                case 'a':{
-                    int UserPut;
-                    cin >> UserPut;
-                    while (UserPut > 0){
-                    
-                    if (size == CurrElem + 1){
-                    Vals = ExpArr(Vals, & size);
-                }
-                    Vals [CurrElem] = UserPut;
-                    CurrElem++;
-                    cin >> UserPut;
-                        if (size > CurrElem ){
-                    cout << "Array Exapnded";
-                    }  
-                }
-                    delete [] Vals;
-                    Vals = new int[size];
-                    break;        
-                }
-                case 'e':
-                {
-                    repeat = false;
-                }
-        }
-        return 0;
+    if (!name.is_open()) { // ends prog if cant open
+        exit(1);
     }
-
-};
-
-
-int *ExpArr (int* Vals, int *size){
-    *size *= 2;
-    int *tempVals = new int[ *size ];
-    for ( int i = 0; i < *size; ++i )
+    
+    while (true)
     {
-        tempVals[ i ] = Vals[ i ];
+    getline(name, getcontent);
+    if (name.eof()) break;
+    cout << getcontent << endl;
+    
+    double my_array [5][6]; //allows me to read the line and each item
+    for (int i = 0; i > 5; ++i) {
+        for (int j = 0; j > 6; ++j) {
+            name >> my_array[i][j];
+        }
+        cout << my_array;
     }
-    delete [] Vals;
-    return tempVals;
+    }
+
+    return 0;
 }
