@@ -2,35 +2,80 @@
 #include <fstream>
 #include <cstdlib>
 #include <string>
+#include <math.h>
+#include <cfloat>
 using namespace std;
+
+double difference(double array[5][6], int r, int c, int r1, int c1){
+    return abs(array[r][c]-array[r1][c1]);
+}
 
 int main() {
     
     string filename;
-    string getcontent;
     ifstream name;
+    double array[5][6];
+    int beginRow;
+    int row;
+    int col;
     cin >> filename;
-    filename.append(".txt"); // adds the .txt extension to the file name
+    filename.append(".txt"); // appends to file name
     name.open(filename);
-    
-    if (!name.is_open()) { // ends prog if cant open
-        exit(1);
+ 
+    if(name.is_open()){
+    ofstream out("out.txt");
+        name >> beginRow;
+        row=0;
+        col=0;
+        
+    while(!name.eof()){
+        name >> array[row][col];
+        col++;
+        if(col == 6){
+        row++;
+        col=0;
     }
-    
-    while (true)
-    {
-    getline(name, getcontent);
-    if (name.eof()) break;
-    cout << getcontent << endl;
-    
-    double my_array [5][6]; //allows me to read the line and each item
-    for (int i = 0; i > 5; ++i) {
-        for (int j = 0; j > 6; ++j) {
-            name >> my_array[i][j];
         }
-        cout << my_array;
-    }
+        int row = beginRow;
+        int col = 1;
+        double diff = DBL_MAX;
+        int next_row = 0,next_col = 0;
+        
+        while(true) {
+        if(col == 6)
+        break;
+        cout<<row<<","<<col<<":"<<array[row-1][col-1]<<endl;
+        
+        if(row > 1){
+        diff = difference(array,row-1,col-1,row-2,col);
+        next_row = row-1;
+        next_col = col+1;
+        }
+        
+        if(row < 5){
+        if(difference(array,row-1,col-1,row,col) <= diff){
+        diff = difference(array,row-1,col-1,row,col);
+        next_row = row+1;
+        next_col = col+1;
+        }
     }
 
+        if(difference(array,row-1,col-1,row-1,col) <= diff){
+        diff = difference(array,row-1,col-1, row-1,col);
+        next_row = row;
+        next_col = col+1;
+        }
+            
+        row = next_row;
+        col = next_col;
+        }
+        out<<row<<","<<col<<":"<<array[row-1][col-1];
+        
+        out.close();
+        
+        name.close();
+        
     return 0;
+    
+}
 }
