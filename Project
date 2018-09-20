@@ -53,7 +53,6 @@ int main() {
             next_row = row-1;
             next_col = col+1;
             }
-            
             if(row < 5){ //difference with bottom right point
             if(difference(array,row-1,col-1,row,col) <= diff){
             diff = difference(array,row-1,col-1,row,col);
@@ -76,5 +75,6 @@ int main() {
         
         name.close();
     }
+    else
     return 0;
 }
