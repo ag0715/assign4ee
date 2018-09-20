@@ -78,3 +78,89 @@ int main() {
     else
     return 0;
 }
+
+
+
+
+
+#include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <string>
+#include <math.h>
+#include <cfloat>
+#include <cmath>
+using namespace std;
+
+double difference(double array[5][6], int r, int c, int r1, int c1){
+    return abs(array[r][c]-array[r1][c1]);
+}
+
+int main() {
+    
+    string filename;
+    ifstream name;
+    double array[5][6];
+    int beginRow;
+    int row;
+    int col;
+    cin >> filename;
+    name.open(filename);
+    
+    if(name.is_open()){
+        ofstream out("out.txt");
+        name >> beginRow;
+        row=0;
+        col=0;
+        
+        while(name >> array[row][col]){
+            col++;
+            if(col == 6){
+            row++;
+            col=0;
+            }
+        }
+        int row = beginRow;
+        int col = 1;
+        double diff = DBL_MAX;
+        int next_row = 0,next_col = 0;
+        bool loopStopper = true;
+       
+        while(loopStopper == true) { // loop to find the least overall change path
+            if(beginRow <= 0){
+               loopStopper = false;
+            }
+            if(col == 6) // breaks loop at the end
+            break;
+            out<<row<<","<<col<<":"<<array[row-1][col-1]<<endl;
+            
+            if(row > 1){  //  difference with the top right point
+            diff = difference(array,row-1,col-1,row-2,col);
+            next_row = row-1;
+            next_col = col+1;
+            }
+            if(row < 5){ //difference with bottom right point
+            if(difference(array,row-1,col-1,row,col) <= diff){
+            diff = difference(array,row-1,col-1,row,col);
+            next_row = row+1;
+            next_col = col+1;
+                }
+            }
+// if difference is less or same as top right point then select bottom right
+            if(difference(array,row-1,col-1,row-1,col) <= diff){
+            diff = difference(array,row-1,col-1, row-1,col);
+            next_row = row;
+            next_col = col+1;
+            }
+            row = next_row;
+            col = next_col;
+        }
+        out<<row<<","<<col<<":"<<array[row-1][col-1]; // last point
+
+        out.close();
+        
+        name.close();
+    }
+    else
+    return 0;
+}
