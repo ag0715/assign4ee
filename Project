@@ -4,6 +4,7 @@
 #include <string>
 #include <math.h>
 #include <cfloat>
+#include <cmath>
 using namespace std;
 
 double difference(double array[5][6], int r, int c, int r1, int c1){
@@ -19,63 +20,61 @@ int main() {
     int row;
     int col;
     cin >> filename;
-    filename.append(".txt"); // appends to file name
     name.open(filename);
- 
+    
     if(name.is_open()){
-    ofstream out("out.txt");
+        ofstream out("out.txt");
         name >> beginRow;
         row=0;
         col=0;
         
-    while(!name.eof()){
-        name >> array[row][col];
-        col++;
-        if(col == 6){
-        row++;
-        col=0;
-    }
+        while(name >> array[row][col]){
+            col++;
+            if(col == 6){
+            row++;
+            col=0;
+            }
         }
         int row = beginRow;
         int col = 1;
         double diff = DBL_MAX;
         int next_row = 0,next_col = 0;
-        
-        while(true) {
-        if(col == 6)
-        break;
-        cout<<row<<","<<col<<":"<<array[row-1][col-1]<<endl;
-        
-        if(row > 1){
-        diff = difference(array,row-1,col-1,row-2,col);
-        next_row = row-1;
-        next_col = col+1;
-        }
-        
-        if(row < 5){
-        if(difference(array,row-1,col-1,row,col) <= diff){
-        diff = difference(array,row-1,col-1,row,col);
-        next_row = row+1;
-        next_col = col+1;
-        }
-    }
-
-        if(difference(array,row-1,col-1,row-1,col) <= diff){
-        diff = difference(array,row-1,col-1, row-1,col);
-        next_row = row;
-        next_col = col+1;
-        }
+       
+        while(true) { // loop to find the least overall change path
+            if(beginRow <= 0){
+                exit(0);
+            }
+            if(col == 6) // breaks loop at the end
+            break;
+            out<<row<<","<<col<<":"<<array[row-1][col-1]<<endl;
             
-        row = next_row;
-        col = next_col;
+            if(row > 1){  //  difference with the top right point
+            diff = difference(array,row-1,col-1,row-2,col);
+            next_row = row-1;
+            next_col = col+1;
+            }
+            
+            if(row < 5){ //difference with bottom right point
+            if(difference(array,row-1,col-1,row,col) <= diff){
+            diff = difference(array,row-1,col-1,row,col);
+            next_row = row+1;
+            next_col = col+1;
+                }
+            }
+// if difference is less or same as top right point then select bottom right
+            if(difference(array,row-1,col-1,row-1,col) <= diff){
+            diff = difference(array,row-1,col-1, row-1,col);
+            next_row = row;
+            next_col = col+1;
+            }
+            row = next_row;
+            col = next_col;
         }
-        out<<row<<","<<col<<":"<<array[row-1][col-1];
-        
+        out<<row<<","<<col<<":"<<array[row-1][col-1]; // last point
+
         out.close();
         
         name.close();
-        
+    }
     return 0;
-    
-}
 }
