@@ -1,0 +1,65 @@
+import java.io.*;
+import java.util.*;
+import java.io.FileInputStream;
+
+public class StockMachine {
+
+    private StockPriceService [] stockPriceServices;
+
+    private String tickerSymbols[];
+
+    private final int NUMBEROFSERVICES = 3;
+
+    public StockMachine(String fileName) {
+        stockPriceServices = new StockPriceService[3];
+        stockPriceServices[0] = new UHStockService();
+        stockPriceServices[1] = new NLPService();
+        stockPriceServices[2] = new ExternalService();
+        try {
+            FileInputStream fis = new FileInputStream(fileName);
+            Scanner scan = new Scanner(fis);
+            this.tickerSymbols = new String[scan.nextInt()];
+            int i = 0;
+            while (scan.hasNext()) {
+                this.tickerSymbols[i] = scan.next();
+                i++;
+            }
+        }
+
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    public String getServiceWithLowestAvg () {
+        String lowestAvg = null;
+        Double firstArray[] = new Double[tickerSymbols.length];
+        Double secondArray[] = new Double[tickerSymbols.length];
+        Double thirdArray[] = new Double[tickerSymbols.length];
+        Double first = 0.0;
+        Double second = 0.0;
+        Double third = 0.0;
+        for (int i = 0; i < tickerSymbols.length; i++) {
+
+            firstArray[i] = stockPriceServices[0].priceForTicker(tickerSymbols[i]);
+            secondArray[i] = stockPriceServices[1].priceForTicker(tickerSymbols[i]);
+            thirdArray[i] = stockPriceServices[2].priceForTicker(tickerSymbols[i]);
+        }
+        for (int i = 0; i < firstArray.length; i++) {
+            first += firstArray[i];
+            second += secondArray[i];
+            third += thirdArray[i];
+        }
+        if ((first < second) && (first < third)) {
+            lowestAvg = stockPriceServices[0].nameOfService();
+        }
+        if ((second < first) && (second < third)) {
+            lowestAvg = stockPriceServices[1].nameOfService();
+        }
+        if ((third < second) && (third < first)) {
+            lowestAvg = stockPriceServices[2].nameOfService();
+        }
+        return lowestAvg;
+    }
