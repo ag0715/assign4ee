@@ -1,0 +1,44 @@
+#include<iostream>
+#include "Stack.h"
+#include <stack> 
+using namespace std;
+
+
+string PalindromeJudger(string input)
+{
+   Stack<string> strn;
+   int index = input.find(" ");
+   while(index != -1)
+   {
+      strn.push(input.substr(0, index));
+      input = input.substr(index+1, string::npos);
+      index = input.find(" "); 
+   }
+   strn.push(input.substr(0, string::npos)); 
+   string output;
+   while(!strn.isEmpty())
+   {
+      if(output!="")
+      output +=" ";
+      output+=strn.top();
+      strn.pop();
+   }
+return output;
+
+}
+
+int main()
+{
+   string input;
+   getline(cin, input); 
+   cout<<PalindromeJudger(input)<<endl;
+   if (input != PalindromeJudger(input))
+   {
+      cout<< "No, it is not palindromic."<<endl; 
+   }
+   else 
+   {
+      cout << "Yes, it is palindromic."<<endl;
+   }
+   
+}
